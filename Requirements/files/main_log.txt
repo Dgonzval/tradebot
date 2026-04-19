@@ -1,0 +1,1079 @@
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:450: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:465: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+INFO:     Started server process [31084]
+INFO:     Waiting for application startup.
+INFO:__main__:Iniciando Trading Bot...
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "fetch_prices" to job store "default"
+INFO:apscheduler.scheduler:Added job "fetch_news" to job store "default"
+INFO:apscheduler.scheduler:Added job "generate_daily_report" to job store "default"
+INFO:apscheduler.scheduler:Added job "evaluate_signal_outcomes" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:__main__:Scheduler iniciado con 4 trabajos
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52906 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52909 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60555 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60560 - "GET /signals?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60565 - "GET /news HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52594 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52596 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52598 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52600 - "GET /signals?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52602 - "GET /news HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64706 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64708 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:__main__:Generando análisis IA...
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:16:45 CEST)" (scheduled at 2026-04-19 12:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75032.02 | P&L: +66.74%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2308.80 | P&L: -7.65%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:21:45 CEST)" executed successfully
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+INFO:__main__:PDF generado: C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\reports\trading_report_20260419_121721.pdf
+INFO:     127.0.0.1:50064 - "POST /report/generate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54739 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54741 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54743 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54745 - "GET /signals?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60122 - "GET /news HTTP/1.1" 200 OK
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:26:45 CEST)" (scheduled at 2026-04-19 12:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75032.02 (cache)
+INFO:__main__:ETH: $2308.80 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 12:41:45 CEST)" (scheduled at 2026-04-19 12:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:26:45 CEST)" (scheduled at 2026-04-19 12:26:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75082.01 | P&L: +66.85%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2311.38 | P&L: -7.54%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:31:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 12:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:36:45 CEST)" (scheduled at 2026-04-19 12:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75082.01 (cache)
+INFO:__main__:ETH: $2311.38 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:41:45 CEST)" (scheduled at 2026-04-19 12:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75102.01 | P&L: +66.89%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2313.81 | P&L: -7.45%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 12:56:45 CEST)" (scheduled at 2026-04-19 12:41:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:46:45 CEST)" (scheduled at 2026-04-19 12:41:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75102.01 (cache)
+INFO:__main__:ETH: $2313.81 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:46:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 12:56:45 CEST)" executed successfully
+INFO:     127.0.0.1:51901 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58349 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58351 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58353 - "GET /signals?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58355 - "GET /news HTTP/1.1" 200 OK
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:51:45 CEST)" (scheduled at 2026-04-19 12:46:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75098.94 | P&L: +66.89%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2315.15 | P&L: -7.39%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:51:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:56:45 CEST)" (scheduled at 2026-04-19 12:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75098.94 (cache)
+INFO:__main__:ETH: $2315.15 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 12:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:11:45 CEST)" (scheduled at 2026-04-19 12:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:01:45 CEST)" (scheduled at 2026-04-19 12:56:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75245.65 | P&L: +67.21%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2319.81 | P&L: -7.21%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:01:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:06:45 CEST)" (scheduled at 2026-04-19 13:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75245.65 (cache)
+INFO:__main__:ETH: $2319.81 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:11:45 CEST)" (scheduled at 2026-04-19 13:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75274.02 | P&L: +67.28%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2320.79 | P&L: -7.17%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:11:45 CEST)" executed successfully
+INFO:     127.0.0.1:53458 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53460 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53462 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53464 - "GET /signals?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53466 - "GET /news HTTP/1.1" 200 OK
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:26:45 CEST)" (scheduled at 2026-04-19 13:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:16:45 CEST)" (scheduled at 2026-04-19 13:11:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75274.02 (cache)
+INFO:__main__:ETH: $2320.79 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:16:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:21:45 CEST)" (scheduled at 2026-04-19 13:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75536.77 | P&L: +67.86%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2330.80 | P&L: -6.77%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:26:45 CEST)" (scheduled at 2026-04-19 13:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75536.77 (cache)
+INFO:__main__:ETH: $2330.80 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:41:45 CEST)" (scheduled at 2026-04-19 13:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:31:45 CEST)" (scheduled at 2026-04-19 13:26:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75397.89 | P&L: +67.55%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2325.30 | P&L: -6.99%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:31:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:36:45 CEST)" (scheduled at 2026-04-19 13:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75397.89 (cache)
+INFO:__main__:ETH: $2325.30 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:41:45 CEST)" (scheduled at 2026-04-19 13:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75496.49 | P&L: +67.77%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2328.52 | P&L: -6.86%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:41:45 CEST)" executed successfully
+WARNING:apscheduler.executors.default:Run time of job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 13:56:45 CEST)" was missed by 0:08:21.788541
+WARNING:apscheduler.executors.default:Run time of job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:51:45 CEST)" was missed by 0:03:21.789043
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:56:45 CEST)" (scheduled at 2026-04-19 13:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75616.01 | P&L: +68.04%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2330.01 | P&L: -6.80%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 13:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:11:45 CEST)" (scheduled at 2026-04-19 13:56:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:01:45 CEST)" (scheduled at 2026-04-19 13:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75616.01 (cache)
+INFO:__main__:ETH: $2330.01 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:01:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:06:45 CEST)" (scheduled at 2026-04-19 14:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75599.68 | P&L: +68.00%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2329.51 | P&L: -6.82%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:11:45 CEST)" (scheduled at 2026-04-19 14:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75599.68 (cache)
+INFO:__main__:ETH: $2329.51 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:26:45 CEST)" (scheduled at 2026-04-19 14:11:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:16:45 CEST)" (scheduled at 2026-04-19 14:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75660.01 | P&L: +68.13%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2334.80 | P&L: -6.61%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:16:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:21:45 CEST)" (scheduled at 2026-04-19 14:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75660.01 (cache)
+INFO:__main__:ETH: $2334.80 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:26:45 CEST)" (scheduled at 2026-04-19 14:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75662.77 | P&L: +68.14%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2332.11 | P&L: -6.72%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:41:45 CEST)" (scheduled at 2026-04-19 14:26:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:31:45 CEST)" (scheduled at 2026-04-19 14:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75662.77 (cache)
+INFO:__main__:ETH: $2332.11 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:31:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:36:45 CEST)" (scheduled at 2026-04-19 14:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75556.29 | P&L: +67.90%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2329.30 | P&L: -6.83%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:41:45 CEST)" (scheduled at 2026-04-19 14:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75556.29 (cache)
+INFO:__main__:ETH: $2329.30 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:56:45 CEST)" (scheduled at 2026-04-19 14:41:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:46:45 CEST)" (scheduled at 2026-04-19 14:41:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75503.99 | P&L: +67.79%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2327.49 | P&L: -6.90%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:46:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 14:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:51:45 CEST)" (scheduled at 2026-04-19 14:46:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75503.99 (cache)
+INFO:__main__:ETH: $2327.49 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:51:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:56:45 CEST)" (scheduled at 2026-04-19 14:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75535.06 | P&L: +67.86%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2328.30 | P&L: -6.87%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 14:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 15:11:45 CEST)" (scheduled at 2026-04-19 14:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:01:45 CEST)" (scheduled at 2026-04-19 14:56:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75535.06 (cache)
+INFO:__main__:ETH: $2328.30 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:01:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 15:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:06:45 CEST)" (scheduled at 2026-04-19 15:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75661.30 | P&L: +68.14%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2335.40 | P&L: -6.58%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:11:45 CEST)" (scheduled at 2026-04-19 15:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75661.30 (cache)
+INFO:__main__:ETH: $2335.40 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 15:26:45 CEST)" (scheduled at 2026-04-19 15:11:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:16:45 CEST)" (scheduled at 2026-04-19 15:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75751.77 | P&L: +68.34%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2337.20 | P&L: -6.51%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:16:45 CEST)" executed successfully
+INFO:__main__:15 noticias cacheadas en Redis
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 15:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:21:45 CEST)" (scheduled at 2026-04-19 15:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75751.77 (cache)
+INFO:__main__:ETH: $2337.20 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:26:45 CEST)" (scheduled at 2026-04-19 15:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $76186.18 | P&L: +69.30%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2347.19 | P&L: -6.11%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 15:41:45 CEST)" (scheduled at 2026-04-19 15:26:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:31:45 CEST)" (scheduled at 2026-04-19 15:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $76186.18 (cache)
+INFO:__main__:ETH: $2347.19 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:31:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 15:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:36:45 CEST)" (scheduled at 2026-04-19 15:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $76057.63 | P&L: +69.02%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2342.21 | P&L: -6.31%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:41:45 CEST)" (scheduled at 2026-04-19 15:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $76057.63 (cache)
+INFO:__main__:ETH: $2342.21 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 15:41:45 CEST)" executed successfully
+WARNING:apscheduler.executors.default:Run time of job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 18:56:45 CEST)" was missed by 0:06:56.638088
+WARNING:apscheduler.executors.default:Run time of job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 18:51:45 CEST)" was missed by 0:01:56.638088
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 18:56:45 CEST)" (scheduled at 2026-04-19 18:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75645.97 | P&L: +68.10%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2321.31 | P&L: -7.15%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 18:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:11:45 CEST)" (scheduled at 2026-04-19 18:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:01:45 CEST)" (scheduled at 2026-04-19 18:56:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75645.97 (cache)
+INFO:__main__:ETH: $2321.31 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:01:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:06:45 CEST)" (scheduled at 2026-04-19 19:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75324.26 | P&L: +67.39%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2310.00 | P&L: -7.60%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:11:45 CEST)" (scheduled at 2026-04-19 19:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75324.26 (cache)
+INFO:__main__:ETH: $2310.00 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:26:45 CEST)" (scheduled at 2026-04-19 19:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:16:45 CEST)" (scheduled at 2026-04-19 19:11:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75216.34 | P&L: +67.15%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2306.40 | P&L: -7.74%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:16:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:21:45 CEST)" (scheduled at 2026-04-19 19:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75216.34 (cache)
+INFO:__main__:ETH: $2306.40 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:26:45 CEST)" (scheduled at 2026-04-19 19:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75334.42 | P&L: +67.41%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2313.82 | P&L: -7.45%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:41:45 CEST)" (scheduled at 2026-04-19 19:26:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:31:45 CEST)" (scheduled at 2026-04-19 19:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75334.42 (cache)
+INFO:__main__:ETH: $2313.82 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:31:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:41:45 CEST)" executed successfully
+INFO:     127.0.0.1:56722 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56724 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:36:45 CEST)" (scheduled at 2026-04-19 19:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75366.00 | P&L: +67.48%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2315.51 | P&L: -7.38%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:41:45 CEST)" (scheduled at 2026-04-19 19:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75366.00 (cache)
+INFO:__main__:ETH: $2315.51 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:56:45 CEST)" (scheduled at 2026-04-19 19:41:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:46:45 CEST)" (scheduled at 2026-04-19 19:41:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75184.36 | P&L: +67.08%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2310.30 | P&L: -7.59%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:46:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 19:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:51:45 CEST)" (scheduled at 2026-04-19 19:46:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75184.36 (cache)
+INFO:__main__:ETH: $2310.30 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:51:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:56:45 CEST)" (scheduled at 2026-04-19 19:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74855.34 | P&L: +66.35%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2300.00 | P&L: -8.00%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 19:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:11:45 CEST)" (scheduled at 2026-04-19 19:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:01:45 CEST)" (scheduled at 2026-04-19 19:56:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74855.34 (cache)
+INFO:__main__:ETH: $2300.00 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:01:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:06:45 CEST)" (scheduled at 2026-04-19 20:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74877.86 | P&L: +66.40%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2300.18 | P&L: -7.99%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:11:45 CEST)" (scheduled at 2026-04-19 20:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74877.86 (cache)
+INFO:__main__:ETH: $2300.18 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:26:45 CEST)" (scheduled at 2026-04-19 20:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:16:45 CEST)" (scheduled at 2026-04-19 20:11:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74833.29 | P&L: +66.30%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2298.20 | P&L: -8.07%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:16:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:21:45 CEST)" (scheduled at 2026-04-19 20:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74833.29 (cache)
+INFO:__main__:ETH: $2298.20 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:26:45 CEST)" (scheduled at 2026-04-19 20:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74816.50 | P&L: +66.26%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2296.50 | P&L: -8.14%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:41:45 CEST)" (scheduled at 2026-04-19 20:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:31:45 CEST)" (scheduled at 2026-04-19 20:26:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74816.50 (cache)
+INFO:__main__:ETH: $2296.50 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:31:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:36:45 CEST)" (scheduled at 2026-04-19 20:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74810.44 | P&L: +66.25%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2296.70 | P&L: -8.13%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:41:45 CEST)" (scheduled at 2026-04-19 20:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74810.44 (cache)
+INFO:__main__:ETH: $2296.70 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:56:45 CEST)" (scheduled at 2026-04-19 20:41:45.600087+02:00)
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:46:45 CEST)" (scheduled at 2026-04-19 20:41:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:Buscando noticias...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74753.11 | P&L: +66.12%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2293.72 | P&L: -8.25%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:46:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 20:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:51:45 CEST)" (scheduled at 2026-04-19 20:46:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74753.11 (cache)
+INFO:__main__:ETH: $2293.72 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:51:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:56:45 CEST)" (scheduled at 2026-04-19 20:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74812.00 | P&L: +66.25%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2296.68 | P&L: -8.13%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 20:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:11:45 CEST)" (scheduled at 2026-04-19 20:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:01:45 CEST)" (scheduled at 2026-04-19 20:56:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74812.00 (cache)
+INFO:__main__:ETH: $2296.68 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:01:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:06:45 CEST)" (scheduled at 2026-04-19 21:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74942.47 | P&L: +66.54%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2302.00 | P&L: -7.92%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:11:45 CEST)" (scheduled at 2026-04-19 21:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74942.47 (cache)
+INFO:__main__:ETH: $2302.00 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:26:45 CEST)" (scheduled at 2026-04-19 21:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:16:45 CEST)" (scheduled at 2026-04-19 21:11:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74955.39 | P&L: +66.57%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2300.30 | P&L: -7.99%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:16:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:21:45 CEST)" (scheduled at 2026-04-19 21:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74955.39 (cache)
+INFO:__main__:ETH: $2300.30 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:26:45 CEST)" (scheduled at 2026-04-19 21:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75057.52 | P&L: +66.79%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2303.80 | P&L: -7.85%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:41:45 CEST)" (scheduled at 2026-04-19 21:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:31:45 CEST)" (scheduled at 2026-04-19 21:26:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75057.52 (cache)
+INFO:__main__:ETH: $2303.80 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:31:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:36:45 CEST)" (scheduled at 2026-04-19 21:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75068.65 | P&L: +66.82%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2301.70 | P&L: -7.93%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:41:45 CEST)" (scheduled at 2026-04-19 21:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75068.65 (cache)
+INFO:__main__:ETH: $2301.70 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:56:45 CEST)" (scheduled at 2026-04-19 21:41:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:46:45 CEST)" (scheduled at 2026-04-19 21:41:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $75049.05 | P&L: +66.78%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2299.69 | P&L: -8.01%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:46:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 21:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:51:45 CEST)" (scheduled at 2026-04-19 21:46:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $75049.05 (cache)
+INFO:__main__:ETH: $2299.69 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:51:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:56:45 CEST)" (scheduled at 2026-04-19 21:51:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74984.04 | P&L: +66.63%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2298.65 | P&L: -8.05%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 21:56:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:11:45 CEST)" (scheduled at 2026-04-19 21:56:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:01:45 CEST)" (scheduled at 2026-04-19 21:56:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74984.04 (cache)
+INFO:__main__:ETH: $2298.65 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:01:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:06:45 CEST)" (scheduled at 2026-04-19 22:01:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74870.30 | P&L: +66.38%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2296.71 | P&L: -8.13%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:06:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:11:45 CEST)" (scheduled at 2026-04-19 22:06:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74870.30 (cache)
+INFO:__main__:ETH: $2296.71 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:11:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:26:45 CEST)" (scheduled at 2026-04-19 22:11:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:16:45 CEST)" (scheduled at 2026-04-19 22:11:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74836.22 | P&L: +66.30%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2295.34 | P&L: -8.19%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:16:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:26:45 CEST)" executed successfully
+INFO:     127.0.0.1:51405 - "GET /positions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51407 - "GET /portfolio-value HTTP/1.1" 200 OK
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:21:45 CEST)" (scheduled at 2026-04-19 22:16:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74836.22 (cache)
+INFO:__main__:ETH: $2295.34 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:21:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:26:45 CEST)" (scheduled at 2026-04-19 22:21:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74686.00 | P&L: +65.97%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2289.63 | P&L: -8.41%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:26:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:41:45 CEST)" (scheduled at 2026-04-19 22:26:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:31:45 CEST)" (scheduled at 2026-04-19 22:26:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74686.00 (cache)
+INFO:__main__:ETH: $2289.63 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:31:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:41:45 CEST)" executed successfully
