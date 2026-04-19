@@ -20,7 +20,8 @@ def _post(url, **kwargs):
 logging.basicConfig(level=logging.INFO, encoding="utf-8")
 logger = logging.getLogger(__name__)
 
-API_BASE_URL = "http://localhost:8000"
+import os
+API_BASE_URL = os.getenv("API_BASE_URL", "http://api:8000")
 
 
 # ============= HANDLERS =============

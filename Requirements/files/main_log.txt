@@ -1077,3 +1077,43 @@ ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requ
 ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
 ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
 INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:36:45 CEST)" (scheduled at 2026-04-19 22:31:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74864.94 | P&L: +66.37%
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2296.02 | P&L: -8.16%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:36:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:41:45 CEST)" (scheduled at 2026-04-19 22:36:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+INFO:__main__:BTC: $74864.94 (cache)
+INFO:__main__:ETH: $2296.02 (cache)
+INFO:__main__:AAPL: $270.23 (cache)
+INFO:__main__:GOOGL: $341.68 (cache)
+INFO:__main__:MSFT: $422.79 (cache)
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:41:45 CEST)" executed successfully
+INFO:apscheduler.executors.default:Running job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:56:45 CEST)" (scheduled at 2026-04-19 22:41:45.600087+02:00)
+INFO:__main__:Buscando noticias...
+INFO:apscheduler.executors.default:Running job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:46:45 CEST)" (scheduled at 2026-04-19 22:41:45.600087+02:00)
+INFO:__main__:Actualizando precios...
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:BTC: $74707.88 | P&L: +66.02%
+ERROR:news_fetcher:Error fetching news for BTC: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Bitcoin+OR+BTC+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+C:\Users\danie\OneDrive\Escritorio\codes\TradeBot\Requirements\files\main.py:103: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  pos.updated_at = datetime.utcnow()
+INFO:__main__:ETH: $2288.39 | P&L: -8.46%
+INFO:__main__:AAPL: $270.23 | P&L: +0.00%
+ERROR:news_fetcher:Error fetching news for ETH: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Ethereum+OR+ETH+crypto&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:__main__:GOOGL: $341.68 | P&L: +0.00%
+INFO:__main__:MSFT: $422.79 | P&L: +0.00%
+INFO:apscheduler.executors.default:Job "fetch_prices (trigger: interval[0:05:00], next run at: 2026-04-19 22:46:45 CEST)" executed successfully
+ERROR:news_fetcher:Error fetching news for AAPL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Apple+AAPL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for GOOGL: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Google+Alphabet+GOOGL+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+ERROR:news_fetcher:Error fetching news for MSFT: 429 Client Error: Too Many Requests for url: https://newsapi.org/v2/everything?q=Microsoft+MSFT+stock&language=en&sortBy=publishedAt&pageSize=3&apiKey=a7961abb7a924643a327ed35ca717e93
+INFO:apscheduler.executors.default:Job "fetch_news (trigger: interval[0:15:00], next run at: 2026-04-19 22:56:45 CEST)" executed successfully

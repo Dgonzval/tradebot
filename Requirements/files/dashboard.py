@@ -15,7 +15,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-API_BASE = "http://localhost:8000"
+import os
+API_BASE = os.getenv("API_BASE_URL", "http://api:8000")
 
 # ============= ESTILOS =============
 st.markdown("""
