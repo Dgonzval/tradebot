@@ -69,15 +69,16 @@ async def positions_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         text = "*Mis Posiciones*\n\n"
         for symbol, pos in data.items():
-            pnl = pos.get("pnl_percent", 0)
+            pnl = pos.get("pnl_percent") or 0
             arrow = "+" if pnl >= 0 else "-"
-            cp = pos["current_price"]
-            qty = pos["quantity"]
-            val = qty * cp if cp else 0
-            ep = pos["entry_price"]
+            cp = pos.get("current_price") or 0
+            qty = pos.get("quantity") or 0
+            ep = pos.get("entry_price") or 0
+            val = qty * cp if cp else qty * ep
+            cp_str = f"${cp:,.2f}" if cp else "Sin precio"
             text += (
                 f"[{arrow}] *{symbol}*  {qty} uds\n"
-                f"  Entrada: ${ep:,.2f}  |  Actual: ${cp:,.2f}\n"
+                f"  Entrada: ${ep:,.2f}  |  Actual: {cp_str}\n"
                 f"  Valor: ${val:,.2f}  |  P&L: {pnl:+.2f}%\n\n"
             )
 
