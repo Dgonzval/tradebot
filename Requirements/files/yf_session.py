@@ -2,7 +2,7 @@ import yfinance as yf
 
 try:
     from curl_cffi import requests as curl_requests
-    _session = curl_requests.Session(impersonate="chrome")
+    _session = curl_requests.Session(impersonate="chrome110")
 except Exception:
     _session = None
 
