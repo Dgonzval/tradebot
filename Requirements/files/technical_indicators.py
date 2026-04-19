@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import logging
+from yf_session import ticker as yf_ticker
 
 logger = logging.getLogger(__name__)
 
@@ -183,7 +184,7 @@ def get_indicators(symbol: str, period: str = "90d") -> dict:
     is_crypto = symbol in CRYPTO
     ticker_str = f"{symbol}-USD" if is_crypto else symbol
     try:
-        tk = yf.Ticker(ticker_str)
+        tk = yf_ticker(ticker_str)
         df = tk.history(period=period)
         if df.empty or len(df) < 30:
             return {}

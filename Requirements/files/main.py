@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 import requests as http_requests
 import yfinance as yf
+from yf_session import ticker as yf_ticker
 from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -92,7 +93,7 @@ def fetch_prices():
 
             ticker = f"{symbol}-USD" if symbol in ["BTC", "ETH"] else symbol
             try:
-                hist = yf.Ticker(ticker).history(period="2d")
+                hist = yf_ticker(ticker).history(period="2d")
                 if hist.empty:
                     raise ValueError(f"Sin datos para {ticker}")
                 price = float(hist["Close"].iloc[-1])

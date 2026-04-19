@@ -6,6 +6,7 @@ redis==5.2.0
 apscheduler==3.10.4
 python-telegram-bot==21.0
 yfinance==0.2.48
+curl_cffi==0.7.4
 anthropic==0.40.0
 reportlab==4.2.5
 streamlit==1.40.0

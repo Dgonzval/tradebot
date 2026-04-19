@@ -125,8 +125,9 @@ async def price_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         CRYPTO = {"BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE"}
 
         def _fetch():
+            from yf_session import ticker as yf_ticker
             ticker = f"{symbol}-USD" if symbol in CRYPTO else symbol
-            hist = yf.Ticker(ticker).history(period="5d")
+            hist = yf_ticker(ticker).history(period="5d")
             if hist.empty:
                 raise ValueError("Sin datos disponibles")
             close = hist["Close"]
