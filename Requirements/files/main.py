@@ -92,9 +92,10 @@ def fetch_prices():
 
             ticker = f"{symbol}-USD" if symbol in ["BTC", "ETH"] else symbol
             try:
-                data = yf.Ticker(ticker)
-                price = data.info.get("currentPrice") or data.history(period="1d")["Close"].iloc[-1]
-                price = float(price)
+                hist = yf.Ticker(ticker).history(period="2d")
+                if hist.empty:
+                    raise ValueError(f"Sin datos para {ticker}")
+                price = float(hist["Close"].iloc[-1])
                 cache.set_price(symbol, price)
 
                 pos = db.query(Position).filter(Position.symbol == symbol).first()

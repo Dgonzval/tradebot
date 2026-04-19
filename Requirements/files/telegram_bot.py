@@ -126,11 +126,13 @@ async def price_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         def _fetch():
             ticker = f"{symbol}-USD" if symbol in CRYPTO else symbol
-            data = yf.Ticker(ticker)
-            price = data.info.get("currentPrice") or data.history(period="1d")["Close"].iloc[-1]
-            prev = data.history(period="5d")["Close"]
-            chg = ((float(prev.iloc[-1]) - float(prev.iloc[-2])) / float(prev.iloc[-2]) * 100) if len(prev) >= 2 else 0
-            return float(price), chg
+            hist = yf.Ticker(ticker).history(period="5d")
+            if hist.empty:
+                raise ValueError("Sin datos disponibles")
+            close = hist["Close"]
+            price = float(close.iloc[-1])
+            chg = ((price - float(close.iloc[-2])) / float(close.iloc[-2]) * 100) if len(close) >= 2 else 0
+            return price, chg
 
         price, chg = await asyncio.to_thread(_fetch)
         arrow = "+" if chg >= 0 else ""
