@@ -4,7 +4,6 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
-import yfinance as yf
 from datetime import datetime, timedelta
 
 # ============= CONFIG =============
@@ -72,13 +71,16 @@ def get_signals():
 
 @st.cache_data(ttl=300)
 def get_price_history(symbol: str, period: str = "1mo"):
-    ticker = f"{symbol}-USD" if symbol in ["BTC", "ETH"] else symbol
     try:
-        df = yf.Ticker(ticker).history(period=period)
-        df.index = pd.to_datetime(df.index)
-        return df
-    except:
-        return pd.DataFrame()
+        from yf_session import get_history
+        period_days = {"1mo": 30, "3mo": 90, "6mo": 180, "1y": 365, "5d": 5, "1d": 1}.get(period, 30)
+        df = get_history(symbol, days=period_days)
+        if df is not None and not df.empty:
+            df.index = pd.to_datetime(df.index)
+            return df
+    except Exception:
+        pass
+    return pd.DataFrame()
 
 @st.cache_data(ttl=300)
 def get_indicators_cached(symbol: str):
