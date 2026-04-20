@@ -34,9 +34,11 @@ def get_price(symbol: str) -> float | None:
 
 
 def get_history(symbol: str, days: int = 90):
-    """DataFrame OHLCV. Crypto via CoinGecko, stocks via Stooq."""
-    if symbol in CRYPTO_SYMBOLS:
-        return _coingecko_history(symbol, days)
+    """DataFrame OHLCV. Crypto via CoinGecko, stocks via Stooq.
+    Accepts both 'BTC' and 'BTC-USD' for crypto."""
+    base = symbol.upper().replace("-USD", "").replace("-USDT", "")
+    if base in CRYPTO_SYMBOLS:
+        return _coingecko_history(base, days)
     return _stooq_history(symbol, days)
 
 

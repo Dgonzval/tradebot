@@ -83,20 +83,21 @@ class PDFReportGenerator:
         data = [["Símbolo", "Cantidad", "Precio Entrada", "Precio Actual", "Valor", "P&L %"]]
         
         for symbol, pos in positions.items():
-            current_value = pos.get('quantity', 0) * pos.get('current_price', 0)
-            entry_cost = pos.get('quantity', 0) * pos.get('entry_price', 0)
+            qty = pos.get('quantity') or 0
+            entry = pos.get('entry_price') or 0
+            current = pos.get('current_price') or 0
+            current_value = qty * current
+            entry_cost = qty * entry
             pnl_percent = ((current_value - entry_cost) / entry_cost * 100) if entry_cost > 0 else 0
-            
+
             total_value += current_value
             total_invested += entry_cost
-            
-            pnl_color = colors.green if pnl_percent > 0 else colors.red
-            
+
             data.append([
                 symbol,
-                f"{pos.get('quantity', 0):.4f}",
-                f"${pos.get('entry_price', 0):.2f}",
-                f"${pos.get('current_price', 0):.2f}",
+                f"{qty:.4f}",
+                f"${entry:.2f}",
+                f"${current:.2f}",
                 f"${current_value:,.2f}",
                 f"{pnl_percent:+.2f}%"
             ])
