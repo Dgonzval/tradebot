@@ -177,21 +177,30 @@ def _stooq_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
         )
         r.raise_for_status()
         text = r.text.strip()
-        if not text or "No data" in text or "<html" in text.lower():
+        if not text or "<html" in text.lower():
             logger.warning(f"Stooq: no data for {symbol}")
             return None
-        df = pd.read_csv(io.StringIO(text))
-        # Normalizar nombre de columna de fecha (Stooq puede usar 'Date' o 'date')
+        # Stooq a veces incluye líneas de texto antes del CSV — buscar la línea del header
+        lines = text.splitlines()
+        header_idx = next(
+            (i for i, l in enumerate(lines) if l.lower().startswith("date")), None
+        )
+        if header_idx is None:
+            logger.warning(f"Stooq: no CSV header found for {symbol}. Response: {text[:200]}")
+            return None
+        csv_text = "\n".join(lines[header_idx:])
+        df = pd.read_csv(io.StringIO(csv_text))
         col_map = {c.lower(): c for c in df.columns}
         date_col = col_map.get("date")
         if date_col is None:
-            logger.warning(f"Stooq: unexpected columns {df.columns.tolist()} for {symbol}")
             return None
         df[date_col] = pd.to_datetime(df[date_col])
         df = df.sort_values(date_col).set_index(date_col)
         df.index.name = "Date"
-        # Normalizar nombres de columnas OHLCV
         df.columns = [c.capitalize() for c in df.columns]
+        df = df.dropna(subset=["Close"])
+        if df.empty:
+            return None
         return df.tail(days)
     except Exception as e:
         logger.error(f"Stooq history error for {symbol}: {e}")
