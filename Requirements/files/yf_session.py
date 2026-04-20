@@ -96,22 +96,29 @@ def _coingecko_history(symbol: str, days: int) -> pd.DataFrame | None:
     coin_id = CRYPTO_IDS.get(symbol)
     if not coin_id:
         return None
-    try:
-        r = requests.get(
-            f"https://api.coingecko.com/api/v3/coins/{coin_id}/ohlc",
-            params={"vs_currency": "usd", "days": _coingecko_valid_days(days)},
-            timeout=15,
-        )
-        r.raise_for_status()
-        data = r.json()
-        df = pd.DataFrame(data, columns=["timestamp", "Open", "High", "Low", "Close"])
-        df.index = pd.to_datetime(df["timestamp"], unit="ms")
-        df = df.drop("timestamp", axis=1)
-        df["Volume"] = 0
-        return df
-    except Exception as e:
-        logger.error(f"CoinGecko history error for {symbol}: {e}")
-        return None
+    for attempt in range(3):
+        try:
+            r = requests.get(
+                f"https://api.coingecko.com/api/v3/coins/{coin_id}/ohlc",
+                params={"vs_currency": "usd", "days": _coingecko_valid_days(days)},
+                timeout=15,
+            )
+            if r.status_code == 429:
+                wait = 10 * (attempt + 1)
+                logger.warning(f"CoinGecko 429 for {symbol}, esperando {wait}s...")
+                time.sleep(wait)
+                continue
+            r.raise_for_status()
+            data = r.json()
+            df = pd.DataFrame(data, columns=["timestamp", "Open", "High", "Low", "Close"])
+            df.index = pd.to_datetime(df["timestamp"], unit="ms")
+            df = df.drop("timestamp", axis=1)
+            df["Volume"] = 0
+            return df
+        except Exception as e:
+            logger.error(f"CoinGecko history error for {symbol}: {e}")
+            return None
+    return None
 
 
 # ── Stocks ────────────────────────────────────────────────────────────────────
