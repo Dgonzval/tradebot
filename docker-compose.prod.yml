@@ -41,7 +41,7 @@ services:
     restart: always
     command: python main.py
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-trading_user}:${POSTGRES_PASSWORD:-secure_password_123}@postgres:5432/${POSTGRES_DB:-trading_bot}
       REDIS_URL: redis://redis:6379
