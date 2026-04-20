@@ -61,6 +61,13 @@ def _coingecko_price(symbol: str) -> float | None:
         return None
 
 
+_CG_VALID_DAYS = [1, 7, 14, 30, 90, 180, 365]
+
+def _coingecko_valid_days(days: int) -> int:
+    """Redondea al valor válido más cercano que acepta CoinGecko OHLC."""
+    return min(_CG_VALID_DAYS, key=lambda v: abs(v - days))
+
+
 def _coingecko_history(symbol: str, days: int) -> pd.DataFrame | None:
     coin_id = CRYPTO_IDS.get(symbol)
     if not coin_id:
@@ -68,7 +75,7 @@ def _coingecko_history(symbol: str, days: int) -> pd.DataFrame | None:
     try:
         r = requests.get(
             f"https://api.coingecko.com/api/v3/coins/{coin_id}/ohlc",
-            params={"vs_currency": "usd", "days": min(days, 90)},
+            params={"vs_currency": "usd", "days": _coingecko_valid_days(days)},
             timeout=15,
         )
         r.raise_for_status()
