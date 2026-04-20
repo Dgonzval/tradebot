@@ -169,11 +169,22 @@ def _stooq_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
             headers={"User-Agent": "Mozilla/5.0"},
         )
         r.raise_for_status()
-        if not r.text.strip() or "No data" in r.text:
+        text = r.text.strip()
+        if not text or "No data" in text or "<html" in text.lower():
             logger.warning(f"Stooq: no data for {symbol}")
             return None
-        df = pd.read_csv(io.StringIO(r.text), parse_dates=["Date"])
-        df = df.sort_values("Date").set_index("Date")
+        df = pd.read_csv(io.StringIO(text))
+        # Normalizar nombre de columna de fecha (Stooq puede usar 'Date' o 'date')
+        col_map = {c.lower(): c for c in df.columns}
+        date_col = col_map.get("date")
+        if date_col is None:
+            logger.warning(f"Stooq: unexpected columns {df.columns.tolist()} for {symbol}")
+            return None
+        df[date_col] = pd.to_datetime(df[date_col])
+        df = df.sort_values(date_col).set_index(date_col)
+        df.index.name = "Date"
+        # Normalizar nombres de columnas OHLCV
+        df.columns = [c.capitalize() for c in df.columns]
         return df.tail(days)
     except Exception as e:
         logger.error(f"Stooq history error for {symbol}: {e}")
