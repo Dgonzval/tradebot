@@ -87,7 +87,9 @@ def get_indicators_cached(symbol: str):
     try:
         from technical_indicators import get_indicators
         return get_indicators(symbol)
-    except:
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).error(f"get_indicators error for {symbol}: {e}")
         return {}
 
 def api_healthy():
@@ -353,7 +355,11 @@ with tabs[2]:
 
         # Indicadores tecnicos
         st.markdown("---")
-        st.markdown("#### Indicadores Tecnicos")
+        col_h, col_btn = st.columns([4, 1])
+        col_h.markdown("#### Indicadores Tecnicos")
+        if col_btn.button("Refrescar", key="refresh_ind"):
+            get_indicators_cached.clear()
+            st.rerun()
         ind = get_indicators_cached(selected)
         if ind:
             osc = ind.get("osciladores", {})
@@ -444,7 +450,7 @@ with tabs[2]:
                 oc2.metric("IV Promedio %", f"{options.get('iv_promedio_pct', 0):.1f}%")
                 oc3.metric("Sesgo", options.get("sesgo", "N/A"))
     else:
-        st.error(f"No se pudieron obtener datos para {selected}")
+        st.warning(f"Calculando indicadores para {selected}... Pulsa **Refrescar** o espera 5 minutos.")
 
 # ============= TAB 4: NOTICIAS =============
 with tabs[3]:
