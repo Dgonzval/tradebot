@@ -1,12 +1,14 @@
 """
 Precio de activos sin yfinance (bloqueado en VPS por Yahoo Finance):
-- Crypto precio:   CoinGecko (gratis, sin API key)
+- Crypto precio:    CoinGecko (gratis, sin API key)
 - Crypto historial: CoinGecko OHLC endpoint
-- Stocks precio:   Alpha Vantage (gratis, 25 req/dia, requiere API key)
-                   -> fallback: Stooq (gratis, sin API key)
+- Stocks precio:    Alpha Vantage (con key) -> Stooq (sin key)
 - Stocks historial: Stooq CSV (gratis, sin API key)
+
+Caché en memoria por contenedor (TTL configurable) para evitar rate limits.
 """
 import io
+import time
 import requests
 import logging
 import pandas as pd
@@ -25,21 +27,44 @@ CRYPTO_IDS = {
 
 CRYPTO_SYMBOLS = set(CRYPTO_IDS.keys())
 
+# ── Caché en memoria ──────────────────────────────────────────────────────────
+_CACHE: dict[str, tuple[float, object]] = {}  # key -> (timestamp, value)
+
+def _cache_get(key: str, ttl: int):
+    entry = _CACHE.get(key)
+    if entry and time.time() - entry[0] < ttl:
+        return entry[1]
+    return None
+
+def _cache_set(key: str, value):
+    _CACHE[key] = (time.time(), value)
+
+
+# ── Públicas ──────────────────────────────────────────────────────────────────
 
 def get_price(symbol: str) -> float | None:
     """Precio actual. Crypto via CoinGecko, stocks via AlphaVantage -> Stooq."""
-    if symbol in CRYPTO_SYMBOLS:
-        return _coingecko_price(symbol)
-    return _stock_price(symbol)
+    key = f"price:{symbol}"
+    cached = _cache_get(key, ttl=120)  # 2 min
+    if cached is not None:
+        return cached
+    price = _coingecko_price(symbol) if symbol in CRYPTO_SYMBOLS else _stock_price(symbol)
+    if price is not None:
+        _cache_set(key, price)
+    return price
 
 
-def get_history(symbol: str, days: int = 90):
-    """DataFrame OHLCV. Crypto via CoinGecko, stocks via Stooq.
-    Accepts both 'BTC' and 'BTC-USD' for crypto."""
+def get_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
+    """DataFrame OHLCV. Acepta 'BTC' o 'BTC-USD' para crypto."""
     base = symbol.upper().replace("-USD", "").replace("-USDT", "")
-    if base in CRYPTO_SYMBOLS:
-        return _coingecko_history(base, days)
-    return _stooq_history(symbol, days)
+    key = f"hist:{base}:{days}"
+    cached = _cache_get(key, ttl=300)  # 5 min
+    if cached is not None:
+        return cached
+    df = _coingecko_history(base, days) if base in CRYPTO_SYMBOLS else _stooq_history(symbol, days)
+    if df is not None and not df.empty:
+        _cache_set(key, df)
+    return df
 
 
 # ── Crypto ────────────────────────────────────────────────────────────────────
@@ -64,7 +89,6 @@ def _coingecko_price(symbol: str) -> float | None:
 _CG_VALID_DAYS = [1, 7, 14, 30, 90, 180, 365]
 
 def _coingecko_valid_days(days: int) -> int:
-    """Redondea al valor válido más cercano que acepta CoinGecko OHLC."""
     return min(_CG_VALID_DAYS, key=lambda v: abs(v - days))
 
 
@@ -93,7 +117,6 @@ def _coingecko_history(symbol: str, days: int) -> pd.DataFrame | None:
 # ── Stocks ────────────────────────────────────────────────────────────────────
 
 def _stock_price(symbol: str) -> float | None:
-    """Alpha Vantage con clave, Stooq sin clave como fallback."""
     try:
         from config import ALPHA_VANTAGE_API_KEY
     except Exception:
@@ -119,7 +142,6 @@ def _alphavantage_price(symbol: str, api_key: str) -> float | None:
         price = data.get("05. price")
         if price:
             return float(price)
-        # API key limit reached returns empty Global Quote
         logger.warning(f"AlphaVantage empty response for {symbol} (limit?)")
         return None
     except Exception as e:
@@ -128,7 +150,6 @@ def _alphavantage_price(symbol: str, api_key: str) -> float | None:
 
 
 def _stooq_price(symbol: str) -> float | None:
-    """Precio EOD de Stooq (gratis, sin API key, no bloqueado en VPS)."""
     try:
         df = _stooq_history(symbol, days=5)
         if df is not None and not df.empty:
@@ -139,7 +160,6 @@ def _stooq_price(symbol: str) -> float | None:
 
 
 def _stooq_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
-    """Historial OHLCV desde Stooq CSV. Devuelve los últimos `days` dias."""
     try:
         stooq_sym = f"{symbol.lower()}.us"
         r = requests.get(
@@ -154,8 +174,6 @@ def _stooq_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
             return None
         df = pd.read_csv(io.StringIO(r.text), parse_dates=["Date"])
         df = df.sort_values("Date").set_index("Date")
-        df = df.rename(columns={"Open": "Open", "High": "High", "Low": "Low",
-                                 "Close": "Close", "Volume": "Volume"})
         return df.tail(days)
     except Exception as e:
         logger.error(f"Stooq history error for {symbol}: {e}")
