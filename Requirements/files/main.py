@@ -395,6 +395,20 @@ async def get_signals(limit: int = 20, db: Session = Depends(get_db)):
     ]
 
 
+@app.get("/indicators/{symbol}")
+async def get_indicators_endpoint(symbol: str):
+    """Indicadores técnicos calculados en el contenedor API (caché compartida)."""
+    try:
+        ind = get_indicators(symbol.upper())
+        if not ind:
+            raise HTTPException(status_code=503, detail=f"Sin datos para {symbol}")
+        return ind
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.post("/report/generate")
 async def generate_report():
     try:

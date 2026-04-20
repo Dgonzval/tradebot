@@ -85,12 +85,13 @@ def get_price_history(symbol: str, period: str = "1mo"):
 @st.cache_data(ttl=300)
 def get_indicators_cached(symbol: str):
     try:
-        from technical_indicators import get_indicators
-        return get_indicators(symbol)
+        r = requests.get(f"{API_BASE}/indicators/{symbol}", timeout=30)
+        if r.status_code == 200:
+            return r.json()
     except Exception as e:
         import logging
-        logging.getLogger(__name__).error(f"get_indicators error for {symbol}: {e}")
-        return {}
+        logging.getLogger(__name__).error(f"get_indicators API error for {symbol}: {e}")
+    return {}
 
 def api_healthy():
     try:
