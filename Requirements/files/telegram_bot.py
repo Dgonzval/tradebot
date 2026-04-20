@@ -121,18 +121,16 @@ async def price_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     symbol = context.args[0].upper()
     try:
-        import yfinance as yf
-        CRYPTO = {"BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE"}
-
         def _fetch():
-            from yf_session import ticker as yf_ticker
-            ticker = f"{symbol}-USD" if symbol in CRYPTO else symbol
-            hist = yf_ticker(ticker).history(period="5d")
-            if hist.empty:
+            from yf_session import get_price, get_history
+            price = get_price(symbol)
+            if price is None:
                 raise ValueError("Sin datos disponibles")
-            close = hist["Close"]
-            price = float(close.iloc[-1])
-            chg = ((price - float(close.iloc[-2])) / float(close.iloc[-2]) * 100) if len(close) >= 2 else 0
+            hist = get_history(symbol, days=5)
+            chg = 0.0
+            if hist is not None and len(hist) >= 2:
+                prev = float(hist["Close"].iloc[-2])
+                chg = ((price - prev) / prev * 100) if prev else 0.0
             return price, chg
 
         price, chg = await asyncio.to_thread(_fetch)
