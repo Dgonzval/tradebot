@@ -6,8 +6,9 @@ load_dotenv()
 # API Keys
 CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Tu chat ID para alertas automáticas
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+ALPHA_VANTAGE_API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY", "")
 
 # Database
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:pass@localhost/trading_bot")
