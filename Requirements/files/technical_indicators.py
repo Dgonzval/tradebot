@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import logging
-from yf_session import ticker as yf_ticker
+from yf_session import get_history
 
 logger = logging.getLogger(__name__)
 
@@ -184,9 +184,9 @@ def get_indicators(symbol: str, period: str = "90d") -> dict:
     is_crypto = symbol in CRYPTO
     ticker_str = f"{symbol}-USD" if is_crypto else symbol
     try:
-        tk = yf_ticker(ticker_str)
-        df = tk.history(period=period)
-        if df.empty or len(df) < 30:
+        days = int(period.replace("d", "")) if period.endswith("d") else 90
+        df = get_history(ticker_str, days=days)
+        if df is None or df.empty or len(df) < 30:
             return {}
 
         close = df["Close"]
@@ -275,12 +275,16 @@ def get_indicators(symbol: str, period: str = "90d") -> dict:
         }
 
         if not is_crypto:
-            fundamentals = _get_fundamentals(tk)
-            if fundamentals:
-                result["fundamentales"] = fundamentals
-            options = _get_options_sentiment(tk)
-            if options:
-                result["opciones_sentimiento"] = options
+            try:
+                tk = yf.Ticker(ticker_str)
+                fundamentals = _get_fundamentals(tk)
+                if fundamentals:
+                    result["fundamentales"] = fundamentals
+                options = _get_options_sentiment(tk)
+                if options:
+                    result["opciones_sentimiento"] = options
+            except Exception:
+                pass
 
         return result
 

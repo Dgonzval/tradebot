@@ -4,8 +4,7 @@ import os
 from datetime import datetime, timedelta
 
 import requests as http_requests
-import yfinance as yf
-from yf_session import ticker as yf_ticker
+from yf_session import get_price, get_history
 from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -91,12 +90,10 @@ def fetch_prices():
                 logger.info(f"{symbol}: ${cached:.2f} (cache)")
                 continue
 
-            ticker = f"{symbol}-USD" if symbol in ["BTC", "ETH"] else symbol
             try:
-                hist = yf_ticker(ticker).history(period="2d")
-                if hist.empty:
-                    raise ValueError(f"Sin datos para {ticker}")
-                price = float(hist["Close"].iloc[-1])
+                price = get_price(symbol)
+                if price is None:
+                    raise ValueError(f"Sin datos para {symbol}")
                 cache.set_price(symbol, price)
 
                 pos = db.query(Position).filter(Position.symbol == symbol).first()
@@ -233,8 +230,9 @@ def evaluate_signal_outcomes():
         logger.info(f"Evaluando {len(pending)} señales pendientes...")
         for rec in pending:
             try:
-                ticker_str = f"{rec.symbol}-USD" if rec.symbol in ["BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE"] else rec.symbol
-                price_now = float(yf.Ticker(ticker_str).history(period="1d")["Close"].iloc[-1])
+                price_now = get_price(rec.symbol)
+                if price_now is None:
+                    raise ValueError(f"No price for {rec.symbol}")
                 if rec.price_at_signal and rec.price_at_signal > 0:
                     pnl = (price_now - rec.price_at_signal) / rec.price_at_signal * 100
                 else:
