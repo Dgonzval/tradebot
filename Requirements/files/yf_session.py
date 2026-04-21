@@ -1,9 +1,8 @@
 """
-Precio de activos sin yfinance (bloqueado en VPS por Yahoo Finance):
-- Crypto precio:    CoinGecko (gratis, sin API key)
-- Crypto historial: CoinGecko OHLC endpoint
-- Stocks precio:    Alpha Vantage (con key) -> Stooq (sin key)
-- Stocks historial: Stooq CSV (gratis, sin API key)
+Precio de activos:
+- Crypto:  CoinGecko (gratis, sin API key)
+- Stocks precio:   Yahoo Finance API directa -> Alpha Vantage (con key)
+- Stocks historial: Yahoo Finance API directa -> Alpha Vantage (con key)
 
 Caché en memoria por contenedor (TTL configurable) para evitar rate limits.
 """
@@ -27,8 +26,15 @@ CRYPTO_IDS = {
 
 CRYPTO_SYMBOLS = set(CRYPTO_IDS.keys())
 
+_YF_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/json",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://finance.yahoo.com",
+}
+
 # ── Caché en memoria ──────────────────────────────────────────────────────────
-_CACHE: dict[str, tuple[float, object]] = {}  # key -> (timestamp, value)
+_CACHE: dict[str, tuple[float, object]] = {}
 
 def _cache_get(key: str, ttl: int):
     entry = _CACHE.get(key)
@@ -43,9 +49,9 @@ def _cache_set(key: str, value):
 # ── Públicas ──────────────────────────────────────────────────────────────────
 
 def get_price(symbol: str) -> float | None:
-    """Precio actual. Crypto via CoinGecko, stocks via AlphaVantage -> Stooq."""
+    """Precio actual. Crypto via CoinGecko, stocks via Yahoo Finance -> Alpha Vantage."""
     key = f"price:{symbol}"
-    cached = _cache_get(key, ttl=120)  # 2 min
+    cached = _cache_get(key, ttl=120)
     if cached is not None:
         return cached
     price = _coingecko_price(symbol) if symbol in CRYPTO_SYMBOLS else _stock_price(symbol)
@@ -58,16 +64,16 @@ def get_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
     """DataFrame OHLCV. Acepta 'BTC' o 'BTC-USD' para crypto."""
     base = symbol.upper().replace("-USD", "").replace("-USDT", "")
     key = f"hist:{base}:{days}"
-    cached = _cache_get(key, ttl=300)  # 5 min
+    cached = _cache_get(key, ttl=300)
     if cached is not None:
         return cached
     if base in CRYPTO_SYMBOLS:
         df = _coingecko_history(base, days)
     else:
-        api_key = _get_av_key()
-        df = _alphavantage_history(symbol, days, api_key) if api_key else None
+        df = _yahoo_history(symbol, days)
         if df is None or df.empty:
-            df = _stooq_history(symbol, days)
+            api_key = _get_av_key()
+            df = _alphavantage_history(symbol, days, api_key) if api_key else None
     if df is not None and not df.empty:
         _cache_set(key, df)
     return df
@@ -127,7 +133,55 @@ def _coingecko_history(symbol: str, days: int) -> pd.DataFrame | None:
     return None
 
 
-# ── Stocks ────────────────────────────────────────────────────────────────────
+# ── Stocks: Yahoo Finance directo ─────────────────────────────────────────────
+
+def _yahoo_price(symbol: str) -> float | None:
+    """Precio via Yahoo Finance API v8 (sin librería yfinance)."""
+    try:
+        r = requests.get(
+            f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
+            params={"interval": "1d", "range": "2d"},
+            headers=_YF_HEADERS,
+            timeout=10,
+        )
+        r.raise_for_status()
+        closes = r.json()["chart"]["result"][0]["indicators"]["quote"][0]["close"]
+        price = next((p for p in reversed(closes) if p is not None), None)
+        return round(float(price), 2) if price else None
+    except Exception as e:
+        logger.warning(f"Yahoo Finance price error for {symbol}: {e}")
+        return None
+
+
+def _yahoo_history(symbol: str, days: int) -> pd.DataFrame | None:
+    """Historial OHLCV via Yahoo Finance API v8."""
+    try:
+        r = requests.get(
+            f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
+            params={"interval": "1d", "range": f"{min(days, 365)}d"},
+            headers=_YF_HEADERS,
+            timeout=15,
+        )
+        r.raise_for_status()
+        result = r.json()["chart"]["result"][0]
+        timestamps = result["timestamp"]
+        q = result["indicators"]["quote"][0]
+        df = pd.DataFrame({
+            "Open": q["open"],
+            "High": q["high"],
+            "Low": q["low"],
+            "Close": q["close"],
+            "Volume": q["volume"],
+        }, index=pd.to_datetime(timestamps, unit="s"))
+        df.index.name = "Date"
+        df = df.dropna(subset=["Close"])
+        return df.tail(days)
+    except Exception as e:
+        logger.warning(f"Yahoo Finance history error for {symbol}: {e}")
+        return None
+
+
+# ── Stocks: Alpha Vantage (fallback) ─────────────────────────────────────────
 
 def _get_av_key() -> str:
     try:
@@ -138,12 +192,13 @@ def _get_av_key() -> str:
 
 
 def _stock_price(symbol: str) -> float | None:
+    price = _yahoo_price(symbol)
+    if price is not None:
+        return price
     api_key = _get_av_key()
     if api_key:
-        price = _alphavantage_price(symbol, api_key)
-        if price is not None:
-            return price
-    return _stooq_price(symbol)
+        return _alphavantage_price(symbol, api_key)
+    return None
 
 
 def _alphavantage_price(symbol: str, api_key: str) -> float | None:
@@ -158,22 +213,22 @@ def _alphavantage_price(symbol: str, api_key: str) -> float | None:
         price = data.get("05. price")
         if price:
             return float(price)
-        logger.warning(f"AlphaVantage empty response for {symbol} (limit?)")
+        logger.warning(f"AlphaVantage empty response for {symbol}")
         return None
     except Exception as e:
-        logger.error(f"AlphaVantage error for {symbol}: {e}")
+        logger.error(f"AlphaVantage price error for {symbol}: {e}")
         return None
 
 
 def _alphavantage_history(symbol: str, days: int, api_key: str) -> pd.DataFrame | None:
-    """Historial OHLCV diario via Alpha Vantage TIME_SERIES_DAILY."""
+    """Historial OHLCV via Alpha Vantage TIME_SERIES_DAILY."""
     try:
         r = requests.get(
             "https://www.alphavantage.co/query",
             params={
                 "function": "TIME_SERIES_DAILY",
                 "symbol": symbol,
-                "outputsize": "compact",  # últimos 100 días
+                "outputsize": "compact",
                 "apikey": api_key,
             },
             timeout=15,
@@ -181,71 +236,21 @@ def _alphavantage_history(symbol: str, days: int, api_key: str) -> pd.DataFrame 
         r.raise_for_status()
         data = r.json().get("Time Series (Daily)", {})
         if not data:
-            logger.warning(f"AlphaVantage history empty for {symbol} (limit o key inválida?)")
+            logger.warning(f"AlphaVantage history empty for {symbol}")
             return None
-        rows = []
-        for date_str, vals in data.items():
-            rows.append({
-                "Date": pd.to_datetime(date_str),
-                "Open": float(vals["1. open"]),
-                "High": float(vals["2. high"]),
-                "Low": float(vals["3. low"]),
-                "Close": float(vals["4. close"]),
-                "Volume": float(vals["5. volume"]),
-            })
+        rows = [
+            {
+                "Date": pd.to_datetime(d),
+                "Open": float(v["1. open"]),
+                "High": float(v["2. high"]),
+                "Low": float(v["3. low"]),
+                "Close": float(v["4. close"]),
+                "Volume": float(v["5. volume"]),
+            }
+            for d, v in data.items()
+        ]
         df = pd.DataFrame(rows).sort_values("Date").set_index("Date")
         return df.tail(days)
     except Exception as e:
         logger.error(f"AlphaVantage history error for {symbol}: {e}")
-        return None
-
-
-def _stooq_price(symbol: str) -> float | None:
-    try:
-        df = _stooq_history(symbol, days=5)
-        if df is not None and not df.empty:
-            return round(float(df["Close"].iloc[-1]), 2)
-    except Exception as e:
-        logger.error(f"Stooq price error for {symbol}: {e}")
-    return None
-
-
-def _stooq_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
-    try:
-        stooq_sym = f"{symbol.lower()}.us"
-        r = requests.get(
-            "https://stooq.com/q/d/l/",
-            params={"s": stooq_sym, "i": "d"},
-            timeout=15,
-            headers={"User-Agent": "Mozilla/5.0"},
-        )
-        r.raise_for_status()
-        text = r.text.strip()
-        if not text or "<html" in text.lower():
-            logger.warning(f"Stooq: no data for {symbol}")
-            return None
-        # Stooq a veces incluye líneas de texto antes del CSV — buscar la línea del header
-        lines = text.splitlines()
-        header_idx = next(
-            (i for i, l in enumerate(lines) if l.lower().startswith("date")), None
-        )
-        if header_idx is None:
-            logger.warning(f"Stooq: no CSV header found for {symbol}. Response: {text[:200]}")
-            return None
-        csv_text = "\n".join(lines[header_idx:])
-        df = pd.read_csv(io.StringIO(csv_text))
-        col_map = {c.lower(): c for c in df.columns}
-        date_col = col_map.get("date")
-        if date_col is None:
-            return None
-        df[date_col] = pd.to_datetime(df[date_col])
-        df = df.sort_values(date_col).set_index(date_col)
-        df.index.name = "Date"
-        df.columns = [c.capitalize() for c in df.columns]
-        df = df.dropna(subset=["Close"])
-        if df.empty:
-            return None
-        return df.tail(days)
-    except Exception as e:
-        logger.error(f"Stooq history error for {symbol}: {e}")
         return None
