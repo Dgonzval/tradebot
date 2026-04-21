@@ -61,7 +61,13 @@ def get_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
     cached = _cache_get(key, ttl=300)  # 5 min
     if cached is not None:
         return cached
-    df = _coingecko_history(base, days) if base in CRYPTO_SYMBOLS else _stooq_history(symbol, days)
+    if base in CRYPTO_SYMBOLS:
+        df = _coingecko_history(base, days)
+    else:
+        api_key = _get_av_key()
+        df = _alphavantage_history(symbol, days, api_key) if api_key else None
+        if df is None or df.empty:
+            df = _stooq_history(symbol, days)
     if df is not None and not df.empty:
         _cache_set(key, df)
     return df
@@ -123,17 +129,20 @@ def _coingecko_history(symbol: str, days: int) -> pd.DataFrame | None:
 
 # ── Stocks ────────────────────────────────────────────────────────────────────
 
-def _stock_price(symbol: str) -> float | None:
+def _get_av_key() -> str:
     try:
         from config import ALPHA_VANTAGE_API_KEY
+        return ALPHA_VANTAGE_API_KEY or ""
     except Exception:
-        ALPHA_VANTAGE_API_KEY = ""
+        return ""
 
-    if ALPHA_VANTAGE_API_KEY:
-        price = _alphavantage_price(symbol, ALPHA_VANTAGE_API_KEY)
+
+def _stock_price(symbol: str) -> float | None:
+    api_key = _get_av_key()
+    if api_key:
+        price = _alphavantage_price(symbol, api_key)
         if price is not None:
             return price
-
     return _stooq_price(symbol)
 
 
@@ -153,6 +162,41 @@ def _alphavantage_price(symbol: str, api_key: str) -> float | None:
         return None
     except Exception as e:
         logger.error(f"AlphaVantage error for {symbol}: {e}")
+        return None
+
+
+def _alphavantage_history(symbol: str, days: int, api_key: str) -> pd.DataFrame | None:
+    """Historial OHLCV diario via Alpha Vantage TIME_SERIES_DAILY."""
+    try:
+        r = requests.get(
+            "https://www.alphavantage.co/query",
+            params={
+                "function": "TIME_SERIES_DAILY",
+                "symbol": symbol,
+                "outputsize": "compact",  # últimos 100 días
+                "apikey": api_key,
+            },
+            timeout=15,
+        )
+        r.raise_for_status()
+        data = r.json().get("Time Series (Daily)", {})
+        if not data:
+            logger.warning(f"AlphaVantage history empty for {symbol} (limit o key inválida?)")
+            return None
+        rows = []
+        for date_str, vals in data.items():
+            rows.append({
+                "Date": pd.to_datetime(date_str),
+                "Open": float(vals["1. open"]),
+                "High": float(vals["2. high"]),
+                "Low": float(vals["3. low"]),
+                "Close": float(vals["4. close"]),
+                "Volume": float(vals["5. volume"]),
+            })
+        df = pd.DataFrame(rows).sort_values("Date").set_index("Date")
+        return df.tail(days)
+    except Exception as e:
+        logger.error(f"AlphaVantage history error for {symbol}: {e}")
         return None
 
 
