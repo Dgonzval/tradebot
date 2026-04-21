@@ -49,31 +49,39 @@ def _cache_set(key: str, value):
 # ── Públicas ──────────────────────────────────────────────────────────────────
 
 def get_price(symbol: str) -> float | None:
-    """Precio actual. Crypto via CoinGecko, stocks via Yahoo Finance -> Alpha Vantage."""
+    """Precio actual. Intenta Yahoo Finance primero, luego fuente específica."""
     key = f"price:{symbol}"
     cached = _cache_get(key, ttl=120)
     if cached is not None:
         return cached
-    price = _coingecko_price(symbol) if symbol in CRYPTO_SYMBOLS else _stock_price(symbol)
+    # Yahoo Finance tiene precios para crypto (BTC-USD) y stocks (AAPL)
+    yf_ticker = f"{symbol}-USD" if symbol in CRYPTO_SYMBOLS else symbol
+    price = _yahoo_price(yf_ticker)
+    # Fallback específico por tipo
+    if price is None:
+        price = _coingecko_price(symbol) if symbol in CRYPTO_SYMBOLS else _alphavantage_price(symbol, _get_av_key())
     if price is not None:
         _cache_set(key, price)
     return price
 
 
 def get_history(symbol: str, days: int = 90) -> pd.DataFrame | None:
-    """DataFrame OHLCV. Acepta 'BTC' o 'BTC-USD' para crypto."""
+    """DataFrame OHLCV con volumen real. Intenta Yahoo Finance primero."""
     base = symbol.upper().replace("-USD", "").replace("-USDT", "")
     key = f"hist:{base}:{days}"
     cached = _cache_get(key, ttl=300)
     if cached is not None:
         return cached
-    if base in CRYPTO_SYMBOLS:
-        df = _coingecko_history(base, days)
-    else:
-        df = _yahoo_history(symbol, days)
-        if df is None or df.empty:
+    # Yahoo Finance para todo (BTC-USD tiene volumen real, mejor que CoinGecko)
+    yf_ticker = f"{base}-USD" if base in CRYPTO_SYMBOLS else base
+    df = _yahoo_history(yf_ticker, days)
+    # Fallbacks
+    if df is None or df.empty:
+        if base in CRYPTO_SYMBOLS:
+            df = _coingecko_history(base, days)
+        else:
             api_key = _get_av_key()
-            df = _alphavantage_history(symbol, days, api_key) if api_key else None
+            df = _alphavantage_history(base, days, api_key) if api_key else None
     if df is not None and not df.empty:
         _cache_set(key, df)
     return df
