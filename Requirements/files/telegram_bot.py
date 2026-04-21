@@ -302,12 +302,17 @@ async def report_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.edit_text(f"Error: {data.get('detail', 'desconocido')}")
             return
 
-        with open(data["path"], "rb") as pdf_file:
-            await update.effective_message.reply_document(
-                document=pdf_file,
-                filename=data["filename"],
-                caption="Reporte de trading diario con analisis IA",
+        pdf_response = await asyncio.to_thread(
+            lambda: __import__("requests").get(
+                f"{API_BASE_URL}/report/download/{data['filename']}", timeout=30
             )
+        )
+        pdf_response.raise_for_status()
+        await update.effective_message.reply_document(
+            document=pdf_response.content,
+            filename=data["filename"],
+            caption="Reporte de trading diario con analisis IA",
+        )
         await msg.delete()
     except Exception as e:
         await msg.edit_text(f"Error: {str(e)}")
